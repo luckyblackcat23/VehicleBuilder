@@ -5,6 +5,7 @@ using UnityEngine;
 public class HingeBlock : MonoBehaviour
 {
     public GameObject Centre;
+    public GameObject HingePoint;
 
     public KeyCode PositiveRotation;
     public KeyCode NegativeRotation;
@@ -22,6 +23,6 @@ public class HingeBlock : MonoBehaviour
         {
             Centre.transform.Rotate(0, 0, -RotationSpeed);
         }
-        Centre.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(Centre.transform.localRotation.eulerAngles.z, -90, 90));
+        //Centre.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(Centre.transform.localRotation.eulerAngles.z, -90, 90));
     }
 }

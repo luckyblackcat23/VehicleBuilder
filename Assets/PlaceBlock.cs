@@ -67,7 +67,7 @@ public class PlaceBlock : MonoBehaviour
                 placing.transform.SetParent(AnchorPoint.transform);
                 AnchorPoint.transform.up = -conPoint.up;
 
-                placing.transform.SetParent(conPoint.parent);
+                placing.transform.SetParent(con.transform.parent);
 
                 placing.SetActive(true);
             }
@@ -88,7 +88,9 @@ public class PlaceBlock : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Instantiate(PlacingPrefab, placing.transform.position, placing.transform.rotation, placing.transform.parent);
+                    GameObject block = Instantiate(PlacingPrefab, placing.transform.position, placing.transform.rotation);
+                    block.GetComponent<FixedJoint>().connectedBody = placing.transform.parent.GetComponent<Rigidbody>();
+                    block.transform.SetParent(Vehicle.transform);
                 }
 
                 placingMeshRend.material = previewMaterial;

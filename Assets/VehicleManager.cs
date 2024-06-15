@@ -17,21 +17,18 @@ public class VehicleManager : MonoBehaviour
     {
         if (GameManager.buildMode)
         {
-            if (rb)
+            if (!rb.isKinematic)
             {
-                Destroy(rb);
-                rb = null;
+                rb.isKinematic = true;
             }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 1 * Time.deltaTime);
         }
         else
         {
-            if (!rb)
+            if (rb.isKinematic)
             {
-                gameObject.AddComponent<Rigidbody>();
-                rb = GetComponent<Rigidbody>();
-                rb.drag = 1;
+                rb.isKinematic = false;
                 InitializeParts();
             }
         }
